@@ -1,0 +1,115 @@
+.css-picture{
+    width:200px;
+    height:200px;
+    position:relative;
+    margin:20px auto;
+    filter: drop-shadow(0 18px 22px rgba(0,0,0,0.65));
+}
+
+/* Монитор */
+.monitor{
+    position:absolute;
+    top:20px;
+    left:20px;
+    width:160px;
+    height:95px;
+    background:#cfd9e3;
+    border:3px solid #616161;
+    border-radius:10px 10px 0 0;
+    overflow:hidden;
+}
+
+/* Экран */
+.screen{
+    position:absolute;
+    top:8px;
+    left:5px;
+    width:144px;
+    height:70px;
+    background: linear-gradient(
+        135deg,
+        #ffffff 10%,
+        #a6c9ff 65%,
+        #5e8bf4 100%
+    );
+    border-radius:4px;
+    overflow:hidden;
+}
+
+/* Блик экрана */
+.screen::after{
+    content:"";
+    position:absolute;
+    inset:3px;
+    border-radius:3px;
+    background: linear-gradient(
+        -20deg,
+        rgba(255,255,255,0.45),
+        rgba(255,255,255,0.05) 50%,
+    );
+}
+
+/* Нижняя часть ноутбука */
+
+.base{
+    position:absolute;
+    top:120px;
+    left:10px;
+    transform: skewX(-15deg);
+    width:160px;
+    height:70px;
+    border-radius:0 0 10px 10px;
+    box-shadow: 
+        0 16px 20px rgba(0,0,0,0.35),
+        0 12px 12px rgba(0,0,0,0.45);
+    background:linear-gradient(
+        to bottom,
+        #b1b1b1,
+        #8f8f8f 40%,
+        #707070);
+}
+
+/* Тачпад */ 
+.base::after{
+    content:"";
+    position:absolute;
+    bottom:7px;
+    left:10px;
+    width:140px;
+    height:6px;
+    background:#27262655;
+    border-radius:4px;
+}
+
+/* Клавиатура */
+.keybord{
+    position:absolute;
+    top:20px;
+    left:10px;
+    width:140px;
+    height:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.keys{
+    width:20px;
+    height:35px;
+    background: linear-gradient(
+        to top,
+        #ffffff 0%,
+        #cfcfcf89 50%,
+        #0a0a0a38 80%
+    );
+    border-radius:2px;
+}
+
+/* Форма для маштабирования */
+.css-picture.mini{
+    position:absolute;
+    transform:scale(0.35);
+    transform-origin: top center;
+    top:-18px;
+    left:50%;
+    translate:-50% 0;
+}

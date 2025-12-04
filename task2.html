@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Учебные работы — Портфолио</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pic.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/" aria-label="Логотип сайта">
+        <span class="logo-shape" aria-hidden="true"></span>
+        <span class="logo-text">Мой путь обучения</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основное меню">
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" 
+        aria-controls="nav-list">☰</button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="tasks.html">Задания</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<main>
+  <section class="hero container visable_text">
+    <h1>Задание 2. Рисунок CSS</h1>
+    <p>
+      В этом задании нужно было создать изображение размером 200х200 пикселей,
+      полностью используя CSS без применения картинок.
+      За основу был взят предложенный логотип-пример.
+    </p>
+    <h2>Исходный пример:</h2>
+    <aside style="text-align: center;">
+      <img src="Images/ImgCSS.jpg" alt="Пример логотипа" loading="lazy">
+    </aside>
+    <h2>Мой вариант (рисунок CSS):</h2>
+    <!-- CSS рисунок -->
+<div class="css-picture">
+    <div class="monitor">
+        <div class="screen">
+            <!-- Мини-версия -->
+            <div class="css-picture mini">
+                <div class="monitor">
+                  <div class="screen"></div>
+                </div>
+                <div class="base">
+                    <div class="keybord">
+                        <div class="keys"></div>
+                        <div class="keys"></div>
+                        <div class="keys"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="base">
+        <div class="keybord">
+            <div class="keys"></div>
+            <div class="keys"></div>
+            <div class="keys"></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+ 
+    <p>
+      Для выполнения задания был выбран способ сборки изображения 
+      из простых геометрических блоков. Рисунок создавался из 
+      нескольких элементов <code>div</code> с использованием 
+      фоновых заливок, границ и псевдоэлементов 
+      <code>::before</code> и <code>::after</code>. 
+      Цвета задавались при помощи градиентов, а для создания 
+      эффекта объёма применялись тени и скругления углов. 
+      Все размеры элементов подбирались относительно основного 
+      контейнера размером 200×200 пикселей, чтобы рисунок 
+      соответствовал требованиям задания. Такой подход позволил 
+      получить изображение полностью средствами CSS без 
+      использования растровых картинок.
+    </p>
+
+  </section>
+</main>
+
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
+      <nav class="footer-nav" aria-label="Футер меню">
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
