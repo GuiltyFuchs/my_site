@@ -1,7 +1,7 @@
 :root{
   --max-width: 1100px;
   --accent: #2b6cb0;
-  --muted: #161718b1;
+  --muted: #1e1e1fb1;
   --bg: #f7fafc;
   --card: #ffffff;
   --radius: 12px;
@@ -191,7 +191,7 @@ body{
   gap:12px; 
   align-items:center; 
   font-size:14px; 
-  color:var(--muted) }
+  color:var(--accent) }
 
 /* Маштабирование */
 @media (max-width: 1024px){

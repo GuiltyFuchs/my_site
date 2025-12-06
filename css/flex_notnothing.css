@@ -1,0 +1,103 @@
+.hint{
+    font-size:13px;
+    color:#333;
+}
+
+/* Flex контейнер */
+.flex-box{
+    width:200px;
+    height:200px;
+
+    margin:20px auto;
+
+    background:#fff;
+    border:2px solid black;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    overflow:hidden;
+
+    cursor:pointer;
+}
+
+/* Слои */
+.boy,
+.brick,
+.text{
+    position:absolute;
+    transition:opacity .25s ease, transform .25s ease;
+}
+
+/* Мальчик */
+.boy{
+    width:70px;
+    bottom:22px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:3;
+}
+
+.boy.left{
+    left:8px;
+    transform:none;
+}
+
+.boy.size{
+    width: 100px;
+}
+
+/* Кирпич */
+.brick{
+    width:35px;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:2;
+}
+
+/* Текст */
+.text{
+    width:120px;
+    top:6px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:4;
+}
+
+/* Скрытие */
+.hidden{
+    opacity:0;
+    pointer-events:none;
+}
+
+/* Анимация */
+
+/* Полёт кирпича */
+@keyframes flyBrick{
+    0%{
+        transform:translate(-50%,0) rotate(0);
+    }
+    100%{
+        transform:translate(62px,-120px) rotate(720deg);
+    }
+}
+
+.fly{
+    animation: flyBrick 1.1s ease-out forwards;
+}
+
+/* Тряска контейнера */
+@keyframes shake{
+    0%{ transform:translateX(0); }
+    25%{ transform:translateX(-4px); }
+    50%{ transform:translateX(4px); }
+    75%{ transform:translateX(-4px); }
+    100%{ transform:translateX(0); }
+}
+
+.shake{
+    animation: shake .45s infinite;
+}

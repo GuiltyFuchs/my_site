@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Задание 3. Flexbox.</title>
+  <title>Задание 3. Flexbox</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/flex.css">
 </head>
@@ -20,12 +20,12 @@
         <button class="nav-toggle" id="nav-toggle" aria-expanded="false" 
         aria-controls="nav-list">☰</button>
         <ul id="nav-list" class="nav-list">
-          <li><a href="index.html">На главную</a></li>
           <li><a href="tasks.html">Задания</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
     </div>
-  </header>  
+  </header>
 
   <main>
   <section class="hero container visable_text">
@@ -35,43 +35,31 @@
       которые меняются при наведении/нажатии по ним кнопкой мыши.
     </p>
 <h2>Flexbox — анимация из 4 фреймов</h2>
-<p>Последовательность для смены фреймов и демонстрации:</p>
-<p>1. Наведите курсор мышки</p>
-<p>2. Совершите клик мышкой по фрейму.</p>
-<p>3. Совершите клик мышкой по фрейму с удержанием кнопки.</p>
-<p>4. Отпустите кнопку мышки.</p>
-<p>2. Совершите клик мышкой по фрейму для перезапуска.</p>
+<p>Для смены первого фрейма наведите на него мышкой.<br>
+Последующие изменения фреймов происходят при нажатию мышкой по фрейму.</p>
 
-<div class="flex-box" id="flexBox">
+<div id="flexBox" class="flex-box">
 
-    <!-- Фон -->
-    <img src="Images/ware2.jpg" class="background">
+    <img id="boy" class="boy" src="Images/boy1.png">
 
-    <!-- Текст 1 -->
-    <div id="titleTop" class="title top hidden">
-        Магазин "Поварёнок"
-    </div>
+    <img id="brick" class="brick hidden" src="Images/brick.png">
 
-    <!-- Кастрюля -->
-    <img id="pot" src="Images/ware3.png" class="pot hidden">
-
-    <!-- Крышка -->
-    <img id="lid" src="Images/ware4.png" class="lid hidden">
-
-    <!-- Текст 2 -->
-    <div id="titleBottom" class="title bottom hidden">
-        Жаропрочная посуда
-    </div>
+    <img id="text" class="text hidden" src="Images/text1.png">
 
 </div>
-</div>
+
+<script src="js/flex.js"></script>
+
+  </section>
+  </main>
+
     <footer class="site-footer">
         <div class="container footer-inner">
         <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
         <nav class="footer-nav" aria-label="Футер меню"></nav>
         </div>
     </footer>
-<script src="js/flex.js"></script>
-<script src="js/main.js"></script>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

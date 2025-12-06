@@ -1,92 +1,83 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const box   = document.getElementById("flexBox");
-    const boy   = document.getElementById("boy");
-    const brick= document.getElementById("brick");
-    const text  = document.getElementById("text");
+    const box = document.getElementById("flexBox");
+    const titleTop = document.getElementById("titleTop");
+    const titleBottom = document.getElementById("titleBottom");
+    const pot = document.getElementById("pot");
+    const lid = document.getElementById("lid");
 
-    const IMGS = {
-        boy1: "Images/boy1.png",
-        boy2: "Images/boy2.png",
-        boy3: "Images/boy3.png",
-        brick:"Images/brick.png",
-        text1:"Images/text1.png",
-        text2:"Images/text2.png"
-    };
+    let state = 1;
 
-    let frame = 1;
+    function reset() {
+        state = 1;
 
-    // Hover -> Frame 2
+        titleTop.classList.add("hidden");
+        titleBottom.classList.add("hidden");
+
+        pot.classList.add("hidden");
+        pot.classList.remove("pulse");
+
+        lid.classList.add("hidden");
+        lid.classList.remove("slap");
+    }
+
+    /* ---------- Наведение ---------- */
     box.addEventListener("mouseenter", () => {
+        if (state !== 1) return;
 
-        if(frame !== 1) return;
-        frame = 2;
+        titleTop.classList.remove("hidden");
 
-        boy.classList.add("left");
-        boy.src = IMGS.boy2;
+        pot.classList.remove("hidden");
+        pot.classList.add("pulse");
 
-        brick.classList.remove("hidden");
-
-        text.src = IMGS.text1;
-        text.classList.remove("hidden");
+        state = 2;
     });
 
+    box.addEventListener("mouseleave", () => {
+        if (state !== 2) return;
 
-    // Click
-    box.addEventListener("click", () => {
+        titleTop.classList.add("hidden");
 
-        // Frame 3
-        if(frame === 2){
+        pot.classList.add("hidden");
+        pot.classList.remove("pulse");
 
-            frame = 3;
-            boy.classList.add("size");
-            boy.src = IMGS.boy3;
+        state = 1;
+    });
 
-            text.classList.add("hidden");
-
-            // запуск анимации полета кирпича
-            brick.classList.remove("fly");
-            brick.offsetWidth;
-            brick.classList.add("fly");
+    /* ---------- КЛИК ---------- */
+    box.addEventListener("click", (e) => {
+        if (state === 2) {
+            // Включаем крышку
+            pot.classList.remove("pulse");
+            lid.classList.remove("hidden");
+            state = 3;
+        } else if (state === 4) {
+            // Следующий клик — сброс
+            reset();
         }
+    });
 
-        // Frame 4
-        else if(frame === 3){
+    /* ---------- ЗАЖАТИЕ ---------- */
+    box.addEventListener("mousedown", (e) => {
+        if (state !== 3) return;
 
-            frame = 4;
+        // начинаем хлопки крышкой
+        lid.classList.add("slap");
+    });
 
-            text.src = IMGS.text2;
-            text.classList.remove("hidden");
+    /* ---------- ОТПУСКАНИЕ ---------- */
+    box.addEventListener("mouseup", () => {
+        if (state !== 3) return;
 
-            box.classList.add("shake");
+        // останавливаем хлопки, добавляем надпись
+        lid.classList.remove("slap");
+        titleBottom.classList.remove("hidden");
+
+        setTimeout(() => {
+        if (state === 3) {
+            state = 4;
         }
-
-        // Reset
-        else if(frame === 4){
-
-            frame = 1;
-
-            // остановка тряски
-            box.classList.remove("shake");
-
-            // вернуть boy1
-            boy.classList.remove("left");
-            boy.classList.remove("size");
-
-            boy.src = IMGS.boy1;
-
-            // скрыть кирпич
-            brick.classList.add("hidden");
-            brick.classList.remove("fly");
-
-            // сброс полета
-            brick.offsetWidth;
-
-            // скрыть текст
-            text.classList.add("hidden");
-
-        }
-
+    }, 50);
     });
 
 });
