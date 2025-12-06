@@ -1,0 +1,44 @@
+/* Контейнер */
+#rand{
+  margin-top:20px;
+  margin: 0 !important;
+}
+
+/* Общий стиль строки */
+.phrase{
+  padding:6px 10px;
+  margin:0;
+  /* border-radius:0; */
+  font-size:16px;
+}
+
+/* Фоновые классы */
+.class1{
+  background:rgb(204, 192, 217);
+}
+
+.class2{
+  background:rgb(251, 212, 180);
+}
+
+/* Номер */
+.num{
+  text-decoration: underline;
+  margin-right:6px;
+}
+
+/* Латынь */
+.latin{
+  font-style: italic;
+  margin-right:8px;
+}
+
+/* Русский */
+.ru{
+  font-style: normal;
+}
+
+/* Жирность для четных строк */
+.bold{
+  font-weight: 700;
+}

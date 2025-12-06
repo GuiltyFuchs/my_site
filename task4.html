@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Задание 4.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/task4.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Логотип сайта">
+        <span class="logo-shape" aria-hidden="true"></span>
+        <span class="logo-text">Мой путь обучения</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основное меню">
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" 
+        aria-controls="nav-list">☰</button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="index.html">На главную</a></li>
+          <li><a href="tasks.html">Задания</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>  
+
+
+  <main>
+    <section class="visable_text container">
+    <section class="hero">
+      <div class="container">
+          <h1 class="visable_text">Задание 4. DOM.</h1>
+            <p>В данном задании реализована работа с объектной моделью документа
+                (DOM).По нажатию кнопки создаются элементы с фразами на латинском 
+                языке и ихпереводами на русский, которые добавляются на страницу 
+                в случайном, неповторяющемся порядке.</p>
+            <p>Для каждой создаваемой строки автоматически назначается уникальный
+                нумерованный идентификатор. Номер выводится подчёркнутым шрифтом,
+                латинская часть фразы отображается курсивом, а русский перевод —
+                обычным начертанием.</p>
+            <p>При каждом нажатии применяется поочерёдное оформление фона элементов
+                с использованием двух различных CSS-классов. После вывода всех
+                подготовленных фраз система уведомляет пользователя сообщением
+                о завершении списка.</p>
+            <p> Дополнительно реализованы кнопки управления: <b>«Перекрасить»
+                </b> — изменяет начертание всех чётных строк на полужирное,
+                <b>«Сброс»</b> — очищает список фраз и позволяет начать работу 
+                заново.</p>
+      </div>
+    </section>
+    <section class="content-block container">
+      <h2>Случайные фразы</h2>
+        <p>После нажатия кнопки <b>«Создать»</b> появляется новая случайная фраза.
+            Каждая фраза выводится единожды и не повторяется.</p>
+        <p>По достижении лимита доступных выражений выводится уведомление: 
+            <i>«Фразы закончились»</i>.</p>        
+      
+        <div class="content">
+            <button id="createBtn">Создать</button>
+            <button id="repaintBtn">Перекрасить</button>
+            <button id="resetBtn">Сброс</button>
+            <div id="rand"></div>
+        </div>
+
+    </section>
+    </section>
+    
+
+      <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
+      <nav class="footer-nav" aria-label="Футер меню">
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/task4.js"></script>
+</body>
+  </main>  
