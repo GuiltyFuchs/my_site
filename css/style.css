@@ -48,15 +48,13 @@ body{
   padding:12px 0;
 }
 
-/* LOGO (только CSS) */
+/* LOGO */
 .logo{
-  /* display:inline-flex; */
   display:flex;
   align-items:center;
   gap:10px;
   text-decoration:none;
   color:inherit;
-  /* max-width: fit-content; */
 }
 
 .logo-shape{
@@ -111,6 +109,41 @@ body{
   gap:18px;
 }
 .nav-list a{ text-decoration:none; color:var(--muted) }
+
+/* Подменю */
+.has-submenu {
+  position: relative;
+}
+.submenu {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 110px;
+  background: var(--card);
+  opacity: 0.8;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  display: none; /* скрыто по умолчанию */
+  z-index: 100;
+}
+.submenu li a {
+  display: block;
+  padding: 8px 16px;
+  color: var(--muted);
+}
+.submenu li a:hover {
+  color: var(--accent);
+}
+.has-submenu:hover .submenu {
+  display: block;
+}
+.has-submenu.open .submenu {
+  display: block;
+}
+
 .nav-list a:hover{ color:var(--accent) }
 
 /* Hero */
@@ -210,6 +243,12 @@ body{
   .nav-list.show{ display:flex }
   .text-with-images{ grid-template-columns: 1fr; }
   .images-grid{ grid-template-columns: 1fr 1fr }
+  .submenu {
+    top: 0;
+    left: auto;
+    right: 115%;
+    min-width: 110px;
+  }
 }
 @media (max-width:480px){
   :root{ --logo-size:40px }
