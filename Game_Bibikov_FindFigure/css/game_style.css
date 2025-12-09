@@ -1,0 +1,77 @@
+/* Масштабируемое игровое поле */
+.game-board {
+  position: relative;
+  width: 66vw; 
+  height: 66vh;
+  margin: 20px auto;
+  border: 2px solid #333;
+  background-color: #f0f4f8;
+  overflow: hidden;
+  /* color: white; */
+}
+
+.game-start h1 {
+  color: white;        /* Цвет */
+  text-align: center;   /* Положение */
+  margin-top: 40px;     /* Отступ сверху */
+  font-size: 42px;      /* Размер текста */
+}
+.game-start h2 {
+  font-size: 26px;
+  color: white;        /* Цвет */
+  text-align: right;   /* Положение */
+  margin-top: 40px;     /* Отступ сверху */
+  font-size: 42px;      /* Размер текста */
+}
+
+/* Общие стили фигур */
+.game-cell {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transform-origin: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.game-cell.correct {
+  outline: 3px solid #0f0;
+  transform: scale(1.3);
+}
+
+.game-cell.incorrect {
+  outline: 3px solid #f00;
+  transform: scale(0.8);
+}
+
+/* Фигуры через классы */
+.circle { border-radius: 50%; background-color: currentColor; }
+.square { background-color: currentColor; }
+.triangle { 
+  width: 0; height: 0; 
+  border-left: 25px solid transparent; 
+  border-right: 25px solid transparent; 
+  border-bottom: 50px solid currentColor; 
+  background: none; 
+}
+.diamond { width: 50px; height: 50px; transform: rotate(45deg); background-color: currentColor; }
+.trapezoid { 
+  width: 0; height: 0; 
+  border-bottom: 50px solid currentColor; 
+  border-left: 15px solid transparent; 
+  border-right: 15px solid transparent; 
+  background: none; 
+}
+.pentagon { 
+  width: 54px; height: 50px; 
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  background-color: currentColor; 
+}
+
+/* Игровая информация */
+.game-info { display: flex; justify-content: space-around; margin-top: 12px; font-size: 18px; }
+
+#next-level { margin-top: 20px; padding: 10px 20px; font-size: 16px; display: none; }

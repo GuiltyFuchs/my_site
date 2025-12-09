@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Результаты игры</title>
+  <link rel="stylesheet" href="css/game_style.css">
+</head>
+<body>
+  <div class="game-container game-results">
+    <h2>Результаты игры</h2>
+    <p>Игрок: <span id="player-name"></span></p>
+    <p>Очки: <span id="score"></span></p>
+    <button onclick="window.location.href='index.html'">Начать заново</button>
+  </div>
+
+  <script>
+    document.getElementById('player-name').textContent = localStorage.getItem('playerName');
+    document.getElementById('score').textContent = localStorage.getItem('score') || 0;
+  </script>
+</body>
+</html>
