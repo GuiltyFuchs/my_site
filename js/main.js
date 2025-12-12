@@ -3,14 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const navList = document.getElementById('nav-list');
 
   if(toggle && navList){
-    // Клик по кнопке гамбургера
+    // клик по кнопке гамбургера
     toggle.addEventListener('click', (e) => {
       const shown = navList.classList.toggle('show');
       toggle.setAttribute('aria-expanded', String(shown));
-      e.stopPropagation(); // чтобы клик по кнопке не закрывал меню сразу
+      e.stopPropagation();
     });
 
-    // Закрытие при клике вне меню
+    // закрытие при клике вне меню
     document.addEventListener('click', (e) => {
       if(navList.classList.contains('show') && 
          !navList.contains(e.target) && 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Закрытие при клике на ссылку внутри меню
+    // закрытие при клике на ссылку внутри меню
     navList.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navList.classList.remove('show');

@@ -1,17 +1,17 @@
-/* Контейнер */
+/* контейнер */
 #rand{
   margin-top:20px;
   margin: 0 !important;
 }
 
-/* Общий стиль строки */
+/* общий стиль строки */
 .phrase{
   padding:2px 5px;
   margin:0;
   font-size:16px;
 }
 
-/* Фоновые классы */
+/* фоновые классы */
 .class1{
   background:rgb(204, 192, 217);
 }
@@ -20,24 +20,24 @@
   background:rgb(251, 212, 180);
 }
 
-/* Номер */
+/* номер */
 .num{
   text-decoration: underline;
   margin-right:6px;
 }
 
-/* Латынь */
+/* латынь */
 .latin{
   font-style: italic;
   margin-right:8px;
 }
 
-/* Русский */
+/* русский */
 .ru{
   font-style: normal;
 }
 
-/* Жирность для четных строк */
+/* жирность для четных строк */
 .bold{
   font-weight: 700;
 }

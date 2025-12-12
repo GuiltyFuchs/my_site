@@ -6,7 +6,7 @@
     filter: drop-shadow(0 18px 22px rgba(0,0,0,0.65));
 }
 
-/* Монитор */
+/* монитор */
 .monitor{
     position:absolute;
     top:20px;
@@ -19,7 +19,7 @@
     overflow:hidden;
 }
 
-/* Экран */
+/* экран */
 .screen{
     position:absolute;
     top:8px;
@@ -36,7 +36,7 @@
     overflow:hidden;
 }
 
-/* Блик экрана */
+/* блик экрана */
 .screen::after{
     content:"";
     position:absolute;
@@ -45,12 +45,11 @@
     background: linear-gradient(
         -20deg,
         rgba(255,255,255,0.45),
-        rgba(255,255,255,0.05) 50%,
+        rgba(255,255,255,0.05) 50%
     );
 }
 
-/* Нижняя часть ноутбука */
-
+/* основа */
 .base{
     position:absolute;
     top:120px;
@@ -69,7 +68,7 @@
         #707070);
 }
 
-/* Тачпад */ 
+/* тачпад */ 
 .base::after{
     content:"";
     position:absolute;
@@ -81,7 +80,7 @@
     border-radius:4px;
 }
 
-/* Клавиатура */
+/* клавиатура */
 .keybord{
     position:absolute;
     top:20px;
@@ -104,7 +103,7 @@
     border-radius:2px;
 }
 
-/* Форма для маштабирования */
+/* форма для маштабирования */
 .css-picture.mini{
     position:absolute;
     transform:scale(0.35);

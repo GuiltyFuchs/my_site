@@ -19,31 +19,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const repaintBtn = document.getElementById("repaintBtn");
   const resetBtn = document.getElementById("resetBtn");
 
-  // Генерируем случайный порядок
+  // генерирация случайного порядка
   let order = [...latinArr.keys()];
   shuffle(order);
   let clickCount = 0;
 
-  // ---------------------------
   function shuffle(arr){
     for(let i = arr.length - 1; i > 0; i--){
       let j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
   }
+
   function resetAll(){
-    randBox.innerHTML = "";   // очищаем DOM
+    randBox.innerHTML = "";   // очистка DOM
     clickCount = 0;
     order = [...latinArr.keys()];
     shuffle(order);
     }
 
-  // ---------------------------
-
-
-  // ===== СОЗДАТЬ =====
+    // создать 
   createBtn.addEventListener("click", () => {
-
     if(order.length === 0){
       alert("Фразы закончились");
       return;
@@ -52,45 +48,35 @@ document.addEventListener("DOMContentLoaded", () => {
     clickCount++;
 
     const index = order.pop();
-
     const latin = latinArr[index];
     const ru = ruArr[index];
-
     const p = document.createElement("p");
 
     p.id = "phrase-" + clickCount;
     p.classList.add("phrase");
-
     if(clickCount % 2 === 0){
       p.classList.add("class1");
     } else {
       p.classList.add("class2");
     }
-
     p.innerHTML = `
       <span class="num">n=${clickCount-1}.</span>
       <span class="latin">${latin}</span>
       <span class="ru">${ru}</span>
     `;
-
     randBox.appendChild(p);
-
   });
 
-
-  // ===== ПЕРЕКРАСИТЬ =====
+  // перекрас
   repaintBtn.addEventListener("click", () => {
-
     const lines = randBox.querySelectorAll(".phrase");
-
     lines.forEach((p, i) => {
-
       if((i + 1) % 2 === 0){
         p.classList.toggle("bold");
       }
-
     });
-
   });
+
+  // сброс
   resetBtn.addEventListener("click", resetAll);
 });
