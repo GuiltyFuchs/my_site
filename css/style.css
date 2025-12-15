@@ -2,7 +2,6 @@
   --max-width: 1100px;
   --accent: #2b6cb0;
   --muted: #1e1e1fb1;
-  /* --bg: #f7fafc; *//*!!!*/
   --card: #ffffff;
   --radius: 12px;
   --container-padding: 16px;
@@ -95,12 +94,6 @@ body{
 
 /* навигация */
 .main-nav{position:relative}
-.nav-toggle{
-  display:none;
-  background:none;
-  border:0;
-  font-size:20px;
-}
 .nav-list{
   list-style:none;
   margin:0;
@@ -140,9 +133,6 @@ body{
 .has-submenu:hover .submenu {
   display: block;
 }
-.has-submenu.open .submenu {
-  display: block;
-}
 
 .nav-list a:hover{ color:var(--accent) }
 
@@ -161,8 +151,6 @@ body{
     scroll-margin-top: 80px;
 }
 
-/* .hero .lead{ color:var(--muted) } */
-
 .visable_text{
   background: rgba(43, 108, 176, 0.4);
   color: rgba(255, 255, 255, 0.9);
@@ -180,6 +168,15 @@ body{
   border-radius: 8px;
   margin-bottom: 12px; 
   font-size: 20px;
+}
+
+.fiedback {
+  text-align: center; 
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  height: 60vh;
 }
 
 /* текст + блок картинок */
@@ -229,7 +226,6 @@ body{
   .text-with-images{ grid-template-columns: 1fr 260px }
 }
 @media (max-width: 800px){
-  .nav-toggle{ display:inline-block }
   .nav-list{ 
     position:absolute; 
     right:12px; top:56px; 
@@ -238,7 +234,6 @@ body{
     box-shadow:0 8px 30px rgba(0,0,0,0.08); 
     flex-direction:column; 
     display:none }
-  .nav-list.show{ display:flex }
   .text-with-images{ grid-template-columns: 1fr; }
   .images-grid{ grid-template-columns: 1fr 1fr }
   .submenu {

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Задание 5.</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/task5.css">
 </head>
 
 <body>
@@ -16,8 +17,6 @@
       </a>
 
       <nav class="main-nav" id="main-nav" aria-label="Основное меню">
-        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" 
-        aria-controls="nav-list">☰</button>
         <ul id="nav-list" class="nav-list">
           <li><a href="index.html">На главную</a></li>
           <li><a href="tasks.html">Задания</a></li>
@@ -30,13 +29,43 @@
     <section class="visable_text container">
     <section class="hero">
       <div class="container">
-          <h1 class="visable_text">Задание 4</h1>
-            <p>p</p>
+          <h1 class="visable_text">Задание 5</h1>
+            <p>В данном задании реализована работа по взимодействию с объектами 
+              на странице.</p>
+            <p>Взаимодействие осуществляется методом перетаскивания объектов на новое 
+              место в форме.</p>            
+            <p>Элементы фигуры в изначальном положении должны быть повернуты и 
+              распологаться хаотично</p>
+            <p>При верной сборке фигуры должа быть анимация.</p>
+            <p>Собирать фигуру можно в любой области поля</p>
       </div>
     </section>
     <section class="content-block container">
-      <h2>h2</h2>
-      <p>p</p>    
+      <h2>Собери фигуру</h2>
+      <div class="pano" id="pano">
+          <div class="outline" id="outline"></div>
+
+        <!-- тесты -->
+        <!-- <img src="Images/part1.png" class="piece" data-dx="0"   data-dy="0"   data-rot="0">
+        <img src="Images/part2.png" class="piece" data-dx="60"  data-dy="0"   data-rot="90">
+        <img src="Images/part3.png" class="piece" data-dx="120"   data-dy="0"  data-rot="180">
+        <img src="Images/part4.png" class="piece" data-dx="180"  data-dy="0"  data-rot="270"> -->
+  <div class="piece" data-rot="0">
+    <img src="Images/part1.png">
+  </div>
+  <div class="piece" data-rot="0">
+    <img src="Images/part2.png">
+  </div>
+  <div class="piece" data-rot="0">
+    <img src="Images/part3.png">
+  </div>
+  <div class="piece" data-rot="0">
+    <img src="Images/part4.png">
+  </div>
+
+
+      </div>
+
     </section>
     </section>
 
@@ -47,5 +76,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/task5.js"></script>
 </body>
   </main>

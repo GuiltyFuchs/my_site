@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Игра "Найди фигуру"</title>
-  <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="css/game_style.css">
 </head>
 <body>
-  <div class="game-container">
+  <!-- <div class="game-container"> -->
+  <div >
     <h2 id="level-title"></h2>
     <div id="level-help" class="level-help"></div>
     <div class="game-info">
@@ -17,8 +17,11 @@
       <div>Время: <span id="timer">60</span> сек</div>
     </div>
     <div class="game-board" id="game-board"></div>
-    <button id="next-level">Следующий уровень</button>
-  </div>
+    <div class="line-button">
+      <button id="end-game">Окончить игру</button>
+      <button id="next-level">Следующий уровень</button>
+    </div>
+  </div>  
 
   <script src="js/game.js"></script>
 </body>

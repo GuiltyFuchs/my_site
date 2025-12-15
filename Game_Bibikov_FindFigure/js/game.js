@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const timerDisplay = document.getElementById('timer');
   const board = document.getElementById('game-board');
   const nextLevelBtn = document.getElementById('next-level');
+  const endGameBtn = document.getElementById('end-game');  
   const levelTitle = document.getElementById('level-title');
   const levelHelp = document.getElementById('level-help');
   const playerName = localStorage.getItem('playerName') || 'Игрок';
@@ -18,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let targetColor = '';
   let mouseX = 0;
   let mouseY = 0;
+  let count = 20;
+  let skip = 0;
+
 
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
@@ -88,9 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
       nextLevelBtn.textContent = 'Переход на следующий уровень';
     } 
     else {
-      nextLevelBtn.textContent = 'Окончить игру';
+      nextLevelBtn.style.display = 'none';
+      // nextLevelBtn.textContent = 'Окончить игру';
+      // endGameBtn.style.display = 'none';
     }
-
 
     board.innerHTML = '';
 
@@ -98,9 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
     targetColor = getRandomItem(colors);
 
     levelTitle.textContent =
-      `Уровень ${level} — Найдите: ${colorNames[targetColor]} ${shapeNames[targetShape]}`;
-
-    const count = 8 + level * 2;
+      `Уровень ${level} — Найдите: ${colorNames[targetColor]} 
+      ${shapeNames[targetShape]}`;
+      if (count % 2 == 0 || skip == 2) {
+        count++;
+        skip = 0;
+      }
+      else {
+        skip++;
+      }
     const bw = board.clientWidth - 60;
     const bh = board.clientHeight - 60;
     const cells = [];
@@ -133,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
     targetCell.appendChild(targetShapeDiv);
 
     // логика уровней
-
     cells.forEach(cell => {
       // уровень 1
       if (level === 1) {
@@ -145,8 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.dataset.color === targetColor) {
               score += 5;
               time += 2;
-              cell.classList.add('correct');
-              setTimeout(() => cell.classList.remove('correct'), 800);
               nextLevelBtn.style.display = 'block'; // показ кнопки
               generateBoard();
             } else {
@@ -170,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // уровень 3 — падение
       if (level === 3) {
-        const duration = 2500 + Math.random() * 2000;
+        const duration = 2500 + Math.random() * 1500;
         cell.animate([
           { top: '0px' },
           { top: bh + 'px' }
@@ -202,8 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
           cell.dataset.color === targetColor) {
           score += 4;
           time += 2;
-         cell.classList.add('correct');
-          setTimeout(() => cell.classList.remove('correct'), 800);
           nextLevelBtn.style.display = 'block';
          generateBoard();
         } 
@@ -234,8 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.dataset.color === targetColor) {
           score += 8;
           time += 3;
-          cell.classList.add('correct');
-          setTimeout(() => cell.classList.remove('correct'), 800);
           nextLevelBtn.style.display = 'block'; // показ кнопки
           generateBoard();
         } else {
@@ -253,6 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // кнопка перехода уровней
   nextLevelBtn.addEventListener('click', () => {
     level++;
+    count = count + 3;
     nextLevelBtn.style.display = 'none'; // сокрытик при входе на уровень
     if (level > 3) {
       localStorage.setItem('score', score);
@@ -262,6 +267,12 @@ document.addEventListener('DOMContentLoaded', () => {
       generateBoard();
     }
   });
+
+  endGameBtn.addEventListener('click', () => {
+    localStorage.setItem('score', score);
+
+    location.href='results.html';
+  })  
 
   startTimer();
   generateBoard();
