@@ -75,12 +75,22 @@ body {
 
 .line-button {
   display: flex;
+  /* position: relative; */
+  margin: 20px auto;
+  justify-content:space-between;
+  align-items: center;
+  width: 66vw;
+}
+
+
+/* .line-button {
+  display: flex;
   position: relative;
   margin: 20px auto;
   justify-content:flex-start;
   align-items: center;
   width: 66vw;
-}
+} */
 
 #next-level {
   margin-left: auto;
