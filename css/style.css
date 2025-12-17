@@ -231,6 +231,8 @@ body{
 /* маштабирование */
 @media (max-width: 1024px){
   .text-with-images{ grid-template-columns: 1fr 260px }
+  .nav-toggle{ display:none }
+
 }
 @media (max-width: 800px){
   .nav-toggle{ display:inline-block }
