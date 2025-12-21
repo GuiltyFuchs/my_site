@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Задание 5.</title>
+  <link rel="stylesheet" href="../source/css/style.css">
+  <link rel="stylesheet" href="../source/css/task5.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html" aria-label="Логотип сайта">
+        <span class="logo-shape" aria-hidden="true"></span>
+        <span class="logo-text">Мой путь обучения</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основное меню">
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" 
+        aria-controls="nav-list">☰</button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="../index.html">На главную</a></li>
+          <li><a href="tasks.html">Задания</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>  
+  
+  <main>
+    <section class="visable_text container">
+    <section class="hero">
+      <div class="container">
+          <h1 class="visable_text">Задание 5</h1>
+            <p>В данном задании реализована работа по взимодействию с объектами 
+              на странице.</p>
+            <p>Взаимодействие осуществляется методом перетаскивания объектов на новое 
+              место в форме.</p>            
+            <p>Элементы фигуры в изначальном положении должны быть повернуты и 
+              распологаться хаотично</p>
+            <p>При верной сборке фигуры должа быть анимация.</p>
+            <p>Собирать фигуру можно в любой области поля</p>
+      </div>
+    </section>
+      <h2 style="text-align: center; color: rgb(37, 37, 35);">Собери фигуру</h2>
+      <div class="pano" id="pano">
+          <div class="outline" id="outline"></div>
+            <div class="original" id="original"></div>
+            <div class="piece" data-rot="0"> <img src="../source/Images/p1.png"> </div>
+            <div class="piece" data-rot="0"> <img src="../source/Images/p2.png"> </div>
+            <div class="piece" data-rot="0"> <img src="../source/Images/p3.png"> </div>
+            <div class="piece" data-rot="0"> <img src="../source/Images/p4.png"> </div>
+            <div class="piece" data-rot="0"> <img src="../source/Images/p5.png"> </div>
+            <div class="piece" data-rot="0"> <img src="../source/Images/p6.png"> </div>
+            <div class="piece" data-rot="0"> <img src="../source/Images/p7.png"> </div>
+          </div>
+    </section>
+  </main>
+      <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
+    </div>
+  </footer>
+
+  <script src="../source/js/main.js"></script>
+  <script src="../source/js/task5.js"></script>
+</body>
+  </main>

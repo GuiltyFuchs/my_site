@@ -27,43 +27,61 @@
     </div>
   </header>  
 
-  <main>
-  <section class="hero container visable_text">
-    <h1>Задание 3. Flexbox.</h1>
-    <p>
-      В этом задании нужно было создать элемент Flexbox из четырех фреймов
-      которые меняются при наведении/нажатии по ним кнопкой мыши.
-    </p>
-<h2>Flexbox — анимация из 4 фреймов</h2>
-<p>Последовательность для смены фреймов и демонстрации:</p>
-<p>1. Наведите курсор мышки</p>
-<p>2. Совершите клик мышкой по фрейму.</p>
-<p>3. Совершите клик мышкой по фрейму с удержанием кнопки.</p>
-<p>4. Отпустите кнопку мышки.</p>
-<p>2. Совершите клик мышкой по фрейму для перезапуска.</p>
+<main>
+  <section class="visable_text container">
+    <section class="hero">
+      <div class="container">
+        <h1 class="visable_text">Задание 3. Flexbox</h1>
+        <p>
+          В задании реализована анимация, состоящая из четырёх состояний,
+          управляемых наведением и нажатием кнопки мыши.
+        </p>
+      </div>
+    </section>
 
-<div class="flex-box" id="flexBox">
+    <section class="content-block container">
+      <h2>Описание задания</h2>
+      <p>
+        Необходимо было создать flex-контейнер, в котором элементы
+        изменяют своё состояние при взаимодействии пользователя.
+      </p>
+    </section>
 
-    <img src="../source/Images/ware2.jpg" alt="фон" class="background">
+    <section class="content-block container">
+      <h2>Как реализовано</h2>
+      <p>
+        Для раскладки использован Flexbox. Смена состояний осуществляется
+        при помощи CSS-классов, которые добавляются и удаляются через
+        обработчики событий JavaScript.
+      </p>
+    </section>
 
-    <div id="titleTop" class="title top hidden">
-        Магазин "Поварёнок"
-    </div>
+    <section class="content-block container">
+      <h2>Интерактивная демонстрация</h2>
+      <p>Последовательность действий:</p>
+      <ol>
+        <li>Наведите курсор на блок</li>
+        <li>Выполните клик</li>
+        <li>Нажмите и удерживайте кнопку</li>
+        <li>Отпустите кнопку для завершения анимации</li>
+      </ol>
 
-    <img id="pot" src="../source/Images/ware3.png" alt="кастрюля" class="pot hidden">
-
-    <img id="lid" src="../source/Images/ware4.png" alt="крышка" class="lid hidden">
-
-    <div id="titleBottom" class="title bottom hidden">Жаропрочная посуда</div>
-
-</div>
-</div>
+      <div class="flex-box" id="flexBox">
+        <img src="../source/Images/ware2.jpg" alt="фон" class="background">
+        <div id="titleTop" class="title top hidden">Магазин "Поварёнок"</div>
+        <img id="pot" src="../source/Images/ware3.png" alt="кастрюля" class="pot hidden">
+        <img id="lid" src="../source/Images/ware4.png" alt="крышка" class="lid hidden">
+        <div id="titleBottom" class="title bottom hidden">Жаропрочная посуда</div>
+      </div>
+    </section>
   </section>
-    <footer class="site-footer">
-        <div class="container footer-inner">
-        <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
-        </div>
-    </footer>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
+  </div>
+</footer>
 <script src="../source/js/flex.js"></script>
 <script src="../source/js/main.js"></script>
 </body>

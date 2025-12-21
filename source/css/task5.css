@@ -14,31 +14,33 @@
 
 .piece img {
   display: block;
-  /* width: 60px;
-  height: 60px; */
   transform: rotate(var(--r));
-}
-
-/* общий контур */
-/* .outline {
-  position: absolute;
-  border: 3px solid gold;
-  border-radius: 12px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .3s ease, 
-              left .3s ease, 
-              top .3s ease, 
-              width .3s ease, 
-              height .3s ease;
 }
 
 .pano.success .outline {
   opacity: 1;
-} */
+}
 
-.pano.success .piece img {
-  animation: done 0.6s ease-in-out infinite alternate;
+.original {
+  position: absolute;
+  width: 276px;
+  height: 300px;
+  background: url("../Images/task5.png") center / cover no-repeat;
+  cursor: grab;
+  display: none;
+}
+
+.original.active {
+  display: block;
+}
+
+.pano.success .piece {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.pano.success .original {
+  animation: done 0.6s ease-in-out 0s 6 alternate;
 }
 
 .pano.success {
@@ -46,6 +48,6 @@
 }
 
 @keyframes done {
-  from { transform: rotate(var(--r)) scale(1); }
-  to   { transform: rotate(var(--r)) scale(1.1); }
+  from { transform: scale(1); }
+  to   { transform: scale(1.1); }
 }

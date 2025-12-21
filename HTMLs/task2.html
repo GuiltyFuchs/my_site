@@ -28,24 +28,49 @@
   </header>
 
 <main>
-  <section class="hero container visable_text">
-    <h1>Задание 2. Рисунок CSS.</h1>
-    <p>
-      В этом задании нужно было создать изображение размером 200х200 пикселей,
-      полностью используя CSS без применения картинок.
-      За основу был взят предложенный логотип-пример.
-    </p>
-    <h2>Исходный пример:</h2>
-    <aside style="text-align: center;">
-      <img src="../source/Images/ImgCSS.jpg" alt="Пример логотипа" loading="lazy">
-    </aside>
-    <h2>Мой вариант (рисунок CSS):</h2>
-    <!-- CSS рисунок -->
-<div class="css-picture">
-    <div class="monitor">
-        <div class="screen">
-            <!-- мини-версия -->
-            <div class="css-picture mini">
+  <section class="visable_text container">
+    <section class="hero">
+      <div class="container">
+        <h1 class="visable_text">Задание 2. CSS-рисунок</h1>
+        <p>
+          В этом задании требовалось создать изображение размером 200×200 пикселей,
+          полностью средствами CSS, без использования растровых изображений.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-block container">
+      <h2>Описание задания</h2>
+      <p>
+        Цель задания — продемонстрировать возможности CSS при создании
+        графических элементов с использованием блочной модели, градиентов,
+        теней и псевдоэлементов.
+      </p>
+    </section>
+
+    <section class="content-block container">
+      <h2>Как реализовано</h2>
+      <p>
+        Изображение собрано из нескольких элементов <code>div</code>.
+        Для оформления применялись фоновые градиенты, скругления углов,
+        тени и псевдоэлементы <code>::before</code> и <code>::after</code>.
+        Все размеры заданы относительно контейнера 200×200 пикселей.
+      </p>
+    </section>
+
+    <section class="content-block container">
+      <h2>Исходный пример</h2>
+      <aside style="text-align:center;">
+        <img src="../source/Images/ImgCSS.jpg" alt="Пример логотипа">
+      </aside>
+
+      <h2>Мой вариант</h2>
+        <!-- CSS рисунок -->
+        <div class="css-picture">
+          <div class="monitor">
+            <div class="screen">
+              <!-- мини-версия -->
+              <div class="css-picture mini">
                 <div class="monitor">
                   <div class="screen"></div>
                 </div>
@@ -56,42 +81,27 @@
                         <div class="keys"></div>
                     </div>
                 </div>
+              </div>
+
             </div>
-
+          </div>
+          <div class="base">
+            <div class="keybord">
+              <div class="keys"></div>
+              <div class="keys"></div>
+              <div class="keys"></div>
+            </div>
+          </div>
         </div>
-    </div>
-
-    <div class="base">
-        <div class="keybord">
-            <div class="keys"></div>
-            <div class="keys"></div>
-            <div class="keys"></div>
-        </div>
-    </div>
-</div> 
-    <p>
-      Для выполнения задания был выбран способ сборки изображения 
-      из простых геометрических блоков. Рисунок создавался из 
-      нескольких элементов <code>div</code> с использованием 
-      фоновых заливок, границ и псевдоэлементов 
-      <code>::before</code> и <code>::after</code>. 
-      Цвета задавались при помощи градиентов, а для создания 
-      эффекта объёма применялись тени и скругления углов. 
-      Все размеры элементов подбирались относительно основного 
-      контейнера размером 200×200 пикселей, чтобы рисунок 
-      соответствовал требованиям задания. Такой подход позволил 
-      получить изображение полностью средствами CSS без 
-      использования растровых картинок.
-    </p>
+    </section>
   </section>
 </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
-    </div>
-  </footer>
-
-  <script src="../source/js/main.js"></script>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
+  </div>
+</footer>
+<script src="../source/js/main.js"></script>
 </body>
 </html>

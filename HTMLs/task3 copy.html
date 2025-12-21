@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Задание 3. Flexbox.</title>
+  <link rel="stylesheet" href="../source/css/style.css">
+  <link rel="stylesheet" href="../source/css/flex.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../index.html" aria-label="Логотип сайта">
+        <span class="logo-shape" aria-hidden="true"></span>
+        <span class="logo-text">Мой путь обучения</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основное меню">
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" 
+        aria-controls="nav-list">☰</button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="../index.html">На главную</a></li>
+          <li><a href="tasks.html">Задания</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>  
+
+  <main>
+  <section class="hero container visable_text">
+    <h1>Задание 3. Flexbox.</h1>
+    <p>
+      В этом задании нужно было создать элемент Flexbox из четырех фреймов
+      которые меняются при наведении/нажатии по ним кнопкой мыши.
+    </p>
+<h2>Flexbox — анимация из 4 фреймов</h2>
+<p>Последовательность для смены фреймов и демонстрации:</p>
+<p>1. Наведите курсор мышки</p>
+<p>2. Совершите клик мышкой по фрейму.</p>
+<p>3. Совершите клик мышкой по фрейму с удержанием кнопки.</p>
+<p>4. Отпустите кнопку мышки.</p>
+<p>2. Совершите клик мышкой по фрейму для перезапуска.</p>
+
+<div class="flex-box" id="flexBox">
+
+    <img src="../source/Images/ware2.jpg" alt="фон" class="background">
+
+    <div id="titleTop" class="title top hidden">
+        Магазин "Поварёнок"
+    </div>
+
+    <img id="pot" src="../source/Images/ware3.png" alt="кастрюля" class="pot hidden">
+
+    <img id="lid" src="../source/Images/ware4.png" alt="крышка" class="lid hidden">
+
+    <div id="titleBottom" class="title bottom hidden">Жаропрочная посуда</div>
+
+</div>
+</div>
+  </section>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+        <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
+        </div>
+    </footer>
+<script src="../source/js/flex.js"></script>
+<script src="../source/js/main.js"></script>
+</body>
+</html>

@@ -27,57 +27,61 @@
     </div>
   </header>  
   
-  <main>
-    <section class="visable_text container">
+<main>
+  <section class="visable_text container">
+
     <section class="hero">
       <div class="container">
-          <h1 class="visable_text">Задание 5</h1>
-            <p>В данном задании реализована работа по взимодействию с объектами 
-              на странице.</p>
-            <p>Взаимодействие осуществляется методом перетаскивания объектов на новое 
-              место в форме.</p>            
-            <p>Элементы фигуры в изначальном положении должны быть повернуты и 
-              распологаться хаотично</p>
-            <p>При верной сборке фигуры должа быть анимация.</p>
-            <p>Собирать фигуру можно в любой области поля</p>
+        <h1 class="visable_text">Задание 5. Drag & Drop</h1>
+        <p>
+          В задании реализована интерактивная сборка фигуры
+          из отдельных элементов с поворотом и эффектом прилипания.
+        </p>
       </div>
     </section>
+
     <section class="content-block container">
-      <h2>Собери фигуру</h2>
+      <h2>Описание задания</h2>
+      <p>
+        Элементы фигуры изначально располагаются хаотично и могут
+        перемещаться по рабочей области. Для корректной сборки
+        необходимо правильно совместить положение и ориентацию.
+      </p>
+    </section>
+
+    <section class="content-block container">
+      <h2>Как реализовано</h2>
+      <p>
+        Использованы обработчики событий мыши, расчёт относительных
+        координат, проверка поворота элементов и механизм
+        «прилипания» с допустимой погрешностью.
+      </p>
+    </section>
+
+    <section class="content-block container">
+      <h2 style="text-align:center;">Собери фигуру</h2>
       <div class="pano" id="pano">
-          <div class="outline" id="outline"></div>
-
-        <!-- тесты -->
-        <!-- <img src="Images/part1.png" class="piece" data-dx="0"   data-dy="0"   data-rot="0">
-        <img src="Images/part2.png" class="piece" data-dx="60"  data-dy="0"   data-rot="90">
-        <img src="Images/part3.png" class="piece" data-dx="120"   data-dy="0"  data-rot="180">
-        <img src="Images/part4.png" class="piece" data-dx="180"  data-dy="0"  data-rot="270"> -->
-  <div class="piece" data-rot="0">
-    <img src="../source/Images/part1.png">
-  </div>
-  <div class="piece" data-rot="0">
-    <img src="../source/Images/part2.png">
-  </div>
-  <div class="piece" data-rot="0">
-    <img src="../source/Images/part3.png">
-  </div>
-  <div class="piece" data-rot="0">
-    <img src="../source/Images/part4.png">
-  </div>
-
-
+        <div class="outline" id="outline"></div>
+        <div class="original" id="original"></div>
+        <div class="piece"><img src="../source/Images/p1.png"></div>
+        <div class="piece"><img src="../source/Images/p2.png"></div>
+        <div class="piece"><img src="../source/Images/p3.png"></div>
+        <div class="piece"><img src="../source/Images/p4.png"></div>
+        <div class="piece"><img src="../source/Images/p5.png"></div>
+        <div class="piece"><img src="../source/Images/p6.png"></div>
+        <div class="piece"><img src="../source/Images/p7.png"></div>
       </div>
-
     </section>
-    </section>
+  </section>
+</main>
 
-      <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
-    </div>
-  </footer>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© 2025 Мой путь обучения — курс "Верстка и прототипирование сайтов"</p>
+  </div>
+</footer>
 
-  <script src="../source/js/main.js"></script>
-  <script src="../source/js/task5.js"></script>
+<script src="../source/js/main.js"></script>
+<script src="../source/js/task5.js"></script>
 </body>
-  </main>
+</main>

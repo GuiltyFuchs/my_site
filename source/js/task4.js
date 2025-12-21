@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function resetAll(){
-    randBox.innerHTML = "";   // очистка DOM
+    randBox.innerHTML = "";   // очистка
     clickCount = 0;
     order = [...latinArr.keys()];
     shuffle(order);
