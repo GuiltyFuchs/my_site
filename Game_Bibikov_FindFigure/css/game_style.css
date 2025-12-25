@@ -3,7 +3,7 @@ body {
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
   color: #111827;
   line-height: 1.6;
-  background: url("../../Images/BG2.jpg");
+  background:url(../../source/Images/BG2.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -47,7 +47,7 @@ body {
 }
 
 .game-results{
-  background: url(../../Images/scroll.png);
+  background: url(../Images/scroll.png);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

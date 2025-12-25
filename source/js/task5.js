@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function randomizePosition(piece) {
     const panoRect = pano.getBoundingClientRect();
-    const x = Math.random() * (panoRect.width - 352);
-    const y = Math.random() * (panoRect.height - 352);
+    const x = panoRect.width / 2;
+    const y = panoRect.height / 2;
     piece.style.left = x + "px";
     piece.style.top  = y + "px";
   }
