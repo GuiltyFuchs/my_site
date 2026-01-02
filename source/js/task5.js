@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   const pano = document.getElementById("pano");
-  const outline = document.getElementById("outline");
   const pieces = [...document.querySelectorAll(".piece")];
 
   const SNAP = 10; // погрешность
@@ -15,25 +14,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function randomizePosition(piece) {
     const panoRect = pano.getBoundingClientRect();
-    const x = panoRect.width / 2;
-    const y = panoRect.height / 2;
+    const pieceRect = piece.getBoundingClientRect();
+    const maxX = panoRect.width - pieceRect.width;
+    const maxY = panoRect.height - pieceRect.height;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+    // const x = panoRect.width / 2;
+    // const y = panoRect.height / 2;
     piece.style.left = x + "px";
     piece.style.top  = y + "px";
   }
 
   /* верная сборка */
   const correctLayout = {
-    p1: { x: 0,   y: 0   },
-    p2: { x: 100, y: 0   },
-    p3: { x: 0,   y: 100 },
-    p4: { x: 92,  y: 100 },
-    p5: { x: 184, y: 100 },
-    p6: { x: 0,   y: 200 },
-    p7: { x: 176, y: 200 }
+    p1:  { x: 0,   y: 0   },
+    p2:  { x: 100, y: 0   },
+    p3:  { x: 200, y: 0   },
+    p4:  { x: 0,   y: 100 },
+    p5:  { x: 100, y: 100 },
+    p6:  { x: 200, y: 100 },
+    p7:  { x: 0,   y: 200 },
+    p8:  { x: 100, y: 200 },
+    p9:  { x: 200, y: 200 },
+    p10: { x: 0,   y: 300 },
+    p11: { x: 100, y: 300 },
+    p12: { x: 200, y: 300 },
+    p13: { x: 0,   y: 400 },
+    p14: { x: 100, y: 400 },
+    p15: { x: 200, y: 400 }
   };
  
   pieces.forEach((p, i) => {
     p.dataset.id = "p" + (i + 1);
+    p.dataset.rot = 0;
     const r = Math.floor(Math.random() * 4) * 90;
     p.dataset.rotCur = r;
     p.style.setProperty("--r", r + "deg");
@@ -41,10 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     p.addEventListener("mousedown", e => {
       active = p;
-      shiftX = e.offsetX;
-      shiftY = e.offsetY;
+      const rect = p.getBoundingClientRect();
+      shiftX = e.clientX - rect.left;
+      shiftY = e.clientY - rect.top;
+
       p.style.cursor = "grabbing";
       p.style.zIndex = 10;
+
     });
 
     p.addEventListener("contextmenu", e => {
@@ -54,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       p.style.setProperty("--r", r + "deg");
       checkComplete();
     });
+    
   });
 
   document.addEventListener("mousemove", e => {
@@ -62,6 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const rect = pano.getBoundingClientRect();
     active.style.left = e.clientX - rect.left - shiftX + "px";
     active.style.top  = e.clientY - rect.top  - shiftY + "px";
+    document.onmousemove = ev => {
+      const rect = pano.getBoundingClientRect();
+      const maxX = pano.clientWidth - active.offsetWidth;
+      const maxY = pano.clientHeight - active.offsetHeight;
+      const newX = ev.clientX - rect.left - shiftX;        
+      const newY = ev.clientY - rect.top  - shiftY;
+
+      active.style.left =
+        Math.max(0, Math.min(maxX, newX)) + "px";
+      active.style.top =
+        Math.max(0, Math.min(maxY, newY)) + "px";
+    };
   });
 
   document.addEventListener("mouseup", () => {
@@ -139,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (originalActive) return;
     originalActive = true;
 
-    const base = pieces[0];
+    const base = pieces.find(p => p.dataset.id === "p1");
     const baseX = parseInt(base.style.left);
     const baseY = parseInt(base.style.top);
 
@@ -147,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     original.style.top  = baseY + "px";
     original.classList.add("active");
 
-    // скрываем части
+    // сокрытие частей
     pieces.forEach(p => {
       p.style.visibility = "hidden";
     });
@@ -155,10 +184,13 @@ document.addEventListener("DOMContentLoaded", () => {
     enableOriginalDrag();
   }
 
+
   function enableOriginalDrag() {
     original.addEventListener("mousedown", e => {
-      originalShiftX = e.offsetX;
-      originalShiftY = e.offsetY;
+      const rect = original.getBoundingClientRect();
+      originalShiftX = e.clientX - rect.left;
+      originalShiftY = e.clientY - rect.top;
+
       original.style.cursor = "grabbing";
 
       document.onmousemove = ev => {

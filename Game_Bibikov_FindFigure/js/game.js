@@ -9,19 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const levelTitle = document.getElementById('level-title');
   const levelHelp = document.getElementById('level-help');
   const playerName = localStorage.getItem('playerName') || 'Игрок';
+
   playerNameDisplay.textContent = playerName;
 
   let score = 0;
-  let time = 60;
+  let time = 600;
   let level = parseInt(localStorage.getItem('level') || '1');
   let timer;
+  let reposition;
   let targetShape = '';
   let targetColor = '';
   let mouseX = 0;
   let mouseY = 0;
   let count = 20;
   let skip = 0;
-
+  let tmpRep = 0;
 
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
@@ -59,13 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
+  document.querySelectorAll('.level-select').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setLevel(parseInt(btn.dataset.level));
+      btn.blur();
+    });
+  });
+
+
   function startTimer() {
     timerDisplay.textContent = time;
     timer = setInterval(() => {
       time--;
       timerDisplay.textContent = time;
+
       if (time <= 0) {
         clearInterval(timer);
+        stopReposition();
         localStorage.setItem('score', score);
         alert('Время вышло! Ваш результат: ' + score);
         location.href = 'results.html';
@@ -76,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------
 
   function generateBoard() {
-
     switch(level) {
       case 1:
         levelHelp.textContent = 'Дважды кликните по нужной фигуре';
@@ -89,16 +100,20 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
     }
     if (level < 3) {
-      nextLevelBtn.textContent = 'Переход на следующий уровень';
+      nextLevelBtn.textContent = 'Следующий уровень';
     } 
     else {
       nextLevelBtn.style.display = 'none';
-      // nextLevelBtn.textContent = 'Окончить игру';
-      // endGameBtn.style.display = 'none';
     }
 
     board.innerHTML = '';
 
+    stopReposition();
+    if(level===1) tmpRep = 5;
+    if(level===2) tmpRep = 7;
+    if(level===3) tmpRep = 8;
+    startReposition(tmpRep);
+    
     targetShape = getRandomItem(shapes);
     targetColor = getRandomItem(colors);
 
@@ -143,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targetShapeDiv.style.color = targetColor;
     targetCell.appendChild(targetShapeDiv);
 
+
     // логика уровней
     cells.forEach(cell => {
       // уровень 1
@@ -153,14 +169,15 @@ document.addEventListener('DOMContentLoaded', () => {
           if (clicks === 2) {
             if (cell.dataset.shape === targetShape &&
                 cell.dataset.color === targetColor) {
-              score += 5;
+              score += 4;
               time += 2;
               nextLevelBtn.style.display = 'block'; // показ кнопки
+              correctAnswer(cell);//!!!
               generateBoard();
             } else {
-              score -= 5;
-              cell.classList.add('incorrect');
-              setTimeout(() => cell.classList.remove('incorrect'), 800);
+              score -= 2;
+              wrongAnswer(cell); //!!!
+              help(targetCell);
             }
             scoreDisplay.textContent = score;
           }
@@ -178,19 +195,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // уровень 3 — падение
       if (level === 3) {
+        const isVertical = Math.random() < 0.6; // количество фигур по вертикали
         const duration = 2500 + Math.random() * 1500;
-        cell.animate([
-          { top: '0px' },
-          { top: bh + 'px' }
-        ], {
-          duration,
-          iterations: Infinity,
-          direction: 'alternate'
-        });
-      }
+
+        if (isVertical) {
+          cell.animate([
+            { top: '0px' },
+            { top: bh + 'px' }
+          ], {
+            duration,
+            iterations: Infinity,
+            direction: 'alternate',
+            easing: 'ease-in-out'
+          });
+        } else {
+          cell.animate([
+            { left: '0px' },
+            { left: bw + 'px' }
+          ], {
+            duration,
+            iterations: Infinity,
+            direction: 'alternate',
+            easing: 'ease-in-out'
+          });
+        }
+      } 
     });
 
-    // зона проверки искомой фигуры во 2 уровне
+    // зона проверки фигуры во 2 уровне
     if (level === 2) {
       const zone = document.createElement('div');
       zone.className = 'drop-zone';
@@ -200,6 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
       zone.style.width = '100px';
       zone.style.height = '100px';
       zone.style.border = '2px dashed black';
+      zone.style.boxShadow = 'green';
+      zone.style.outline = '5px solid lime';
       board.appendChild(zone);
       zone.addEventListener('dragover', e => e.preventDefault());      //
       zone.addEventListener('drop', e => {
@@ -208,15 +242,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!cell) return;
         if (cell.dataset.shape === targetShape &&
           cell.dataset.color === targetColor) {
-          score += 4;
+          score += 5;
           time += 2;
           nextLevelBtn.style.display = 'block';
-         generateBoard();
+          correctAnswer(cell);
+          generateBoard();
         } 
         else {
-         score -= 6;
-         cell.classList.add('incorrect');
-         setTimeout(() => cell.classList.remove('incorrect'), 800);
+         score -= 3;
+         wrongAnswer(cell);
+         help(targetCell);
         }
         scoreDisplay.textContent = score;
       });
@@ -238,14 +273,15 @@ document.addEventListener('DOMContentLoaded', () => {
       ) {
         if (cell.dataset.shape === targetShape &&
             cell.dataset.color === targetColor) {
-          score += 8;
-          time += 3;
+          score += 6;
+          time += 2;
           nextLevelBtn.style.display = 'block'; // показ кнопки
+          correctAnswer(cell);
           generateBoard();
         } else {
           score -= 4;
-          cell.classList.add('incorrect');
-          setTimeout(() => cell.classList.remove('incorrect'), 800);
+          wrongAnswer(cell);
+          help(targetCell);
         }
         scoreDisplay.textContent = score;
       }
@@ -258,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
   nextLevelBtn.addEventListener('click', () => {
     level++;
     count = count + 3;
-    nextLevelBtn.style.display = 'none'; // сокрытик при входе на уровень
+    nextLevelBtn.style.display = 'none'; // сокрытие при входе на уровень
     if (level > 3) {
       localStorage.setItem('score', score);
       location.href = 'results.html';
@@ -270,9 +306,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
   endGameBtn.addEventListener('click', () => {
     localStorage.setItem('score', score);
-
     location.href='results.html';
   })  
+
+  function repositionCells() {
+    const bw = board.clientWidth - 60;
+    const bh = board.clientHeight - 60;
+
+    document.querySelectorAll('.game-cell').forEach(cell => {
+      const pos = randomPosition(bw, bh);
+      cell.style.left = pos.x + 'px';
+      cell.style.top  = pos.y + 'px';
+      cell.style.transform = `rotate(${Math.random() * 360}deg)`;
+    });
+  }
+
+  function setLevel(newLevel) {
+    level = newLevel;
+    count = 20 + (level - 1) * 3;
+    nextLevelBtn.style.display = 'none';
+    generateBoard();
+  }
+
+  function startReposition(intervalSeconds) {
+    stopReposition(); // на всякий случай
+
+    reposition = setInterval(() => {
+      repositionCells();
+    }, 
+    intervalSeconds * 1000);
+  }
+
+  function stopReposition() {
+    if (reposition) {
+      clearInterval(reposition);
+      reposition = null;
+    }
+  }
+
+  function correctAnswer(cell) {
+    const rect = cell.getBoundingClientRect();
+    const boardRect = board.getBoundingClientRect();
+
+    confetti({
+      particleCount: 35,
+      spread: 70,
+      startVelocity: 25,
+      origin: {
+        x: (rect.left - boardRect.left + rect.width / 2) / boardRect.width,
+        y: (rect.top - boardRect.top + rect.height / 2) / boardRect.height
+      }
+    });
+  }
+
+  function wrongAnswer(cell) {
+    board.classList.add('shake');
+    setTimeout(() => {
+      repositionCells();
+      startReposition(tmpRep);
+    }, 150);
+    setTimeout(() => board.classList.remove('shake'), 400);
+    
+
+    scoreDisplay.textContent = score;
+  }
+
+  function help(cell) {
+    cell.classList.remove('help');
+    void cell.offsetwidth;
+    cell.classList.add('help');
+    setTimeout(() => {
+      cell.classList.remove('help');
+    }, 2600);
+  }
 
   startTimer();
   generateBoard();
