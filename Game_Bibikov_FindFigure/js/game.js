@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let count = 20;
   let skip = 0;
   let tmpRep = 0;
+  let helpTimer = null; //!!!
+  let HELP_DELAY = 10000; // 10 секунд !!!
+  let targetCell = null;
+
+
 
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
@@ -108,11 +113,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     board.innerHTML = '';
 
-    stopReposition();
-    if(level===1) tmpRep = 5;
-    if(level===2) tmpRep = 7;
-    if(level===3) tmpRep = 8;
-    startReposition(tmpRep);
+    // stopReposition();
+    // if(level===1) tmpRep = 5;
+    // if(level===2) tmpRep = 7;
+    // // if(level===3) tmpRep = 18;
+    // startReposition(tmpRep);
+    // stopReposition();
+    if (level === 1) {tmpRep = 5; startReposition(tmpRep);}
+    if (level === 2) {tmpRep = 7; startReposition(tmpRep);}
+
+
     
     targetShape = getRandomItem(shapes);
     targetColor = getRandomItem(colors);
@@ -127,8 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
       else {
         skip++;
       }
-    const bw = board.clientWidth - 60;
-    const bh = board.clientHeight - 60;
+
+    const forbiddenBottom = (level === 2) ? 120 : 0;  
+    const bw = board.clientWidth - 80;
+    // const bh = board.clientHeight - 80;
+    const bh = board.clientHeight - 80 - forbiddenBottom;
     const cells = [];
 
     for (let i = 0; i < count; i++) {
@@ -149,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // хотя бы 1 фигура - искомая
-    const targetCell = getRandomItem(cells);
+    targetCell = getRandomItem(cells);
     targetCell.innerHTML = '';
     targetCell.dataset.shape = targetShape;
     targetCell.dataset.color = targetColor;
@@ -173,11 +186,12 @@ document.addEventListener('DOMContentLoaded', () => {
               time += 2;
               nextLevelBtn.style.display = 'block'; // показ кнопки
               correctAnswer(cell);//!!!
+              // onCorrectAnswer();
               generateBoard();
             } else {
               score -= 2;
               wrongAnswer(cell); //!!!
-              help(targetCell);
+              // showHelp(targetCell);
             }
             scoreDisplay.textContent = score;
           }
@@ -197,6 +211,31 @@ document.addEventListener('DOMContentLoaded', () => {
       if (level === 3) {
         const isVertical = Math.random() < 0.6; // количество фигур по вертикали
         const duration = 2500 + Math.random() * 1500;
+
+      //   const startX = parseFloat(cell.style.left);
+      //   const startY = parseFloat(cell.style.top);
+
+      //   if (isVertical) {
+      //     cell.animate([
+      //       { top: startY + 'px' },
+      //       { top: Math.max(0, Math.min(bh, startY + (Math.random() * 200 + 100))) + 'px' }
+      //     ], {
+      //     duration,
+      //     iterations: Infinity,
+      //     direction: 'alternate',
+      //     easing: 'ease-in-out'
+      //   });
+      // } else {
+      //     cell.animate([
+      //       { left: startX + 'px' },
+      //       { left: Math.max(0, Math.min(bw, startX + (Math.random() * 200 + 100))) + 'px' }
+      //     ], {
+      //     duration,
+      //     iterations: Infinity,
+      //     direction: 'alternate',
+      //     easing: 'ease-in-out'
+      //     });
+      //   }
 
         if (isVertical) {
           cell.animate([
@@ -246,19 +285,24 @@ document.addEventListener('DOMContentLoaded', () => {
           time += 2;
           nextLevelBtn.style.display = 'block';
           correctAnswer(cell);
+          // onCorrectAnswer();
           generateBoard();
         } 
         else {
          score -= 3;
          wrongAnswer(cell);
-         help(targetCell);
+        //  showHelp(targetCell);
         }
         scoreDisplay.textContent = score;
       });
     }
+
+    stopHelpTimer();
+    startHelpTimer();
+
   }
 
-  // нажатие пробела - уровень 3 ----
+  // нажатие пробела - уровень 3
   document.addEventListener('keydown', e => {
     if (level !== 3) return;
     if (e.code !== 'Space') return;
@@ -277,11 +321,12 @@ document.addEventListener('DOMContentLoaded', () => {
           time += 2;
           nextLevelBtn.style.display = 'block'; // показ кнопки
           correctAnswer(cell);
+          // onCorrectAnswer();
           generateBoard();
         } else {
           score -= 4;
           wrongAnswer(cell);
-          help(targetCell);
+          // showHelp(targetCell);
         }
         scoreDisplay.textContent = score;
       }
@@ -310,8 +355,10 @@ document.addEventListener('DOMContentLoaded', () => {
   })  
 
   function repositionCells() {
-    const bw = board.clientWidth - 60;
-    const bh = board.clientHeight - 60;
+    const forbiddenBottom = (level === 2) ? 120 : 0;  
+    const bw = board.clientWidth - 80;
+    // const bh = board.clientHeight - 80;
+    const bh = board.clientHeight - 80 - forbiddenBottom;
 
     document.querySelectorAll('.game-cell').forEach(cell => {
       const pos = randomPosition(bw, bh);
@@ -330,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startReposition(intervalSeconds) {
     stopReposition(); // на всякий случай
-
+    if (level===3) return; //!!!
     reposition = setInterval(() => {
       repositionCells();
     }, 
@@ -357,27 +404,57 @@ document.addEventListener('DOMContentLoaded', () => {
         y: (rect.top - boardRect.top + rect.height / 2) / boardRect.height
       }
     });
+
+    stopHelpTimer();
+    if (level < 3) {
+      startHelpTimer();
+    }
   }
 
   function wrongAnswer(cell) {
     board.classList.add('shake');
+
     setTimeout(() => {
-      repositionCells();
-      startReposition(tmpRep);
-    }, 150);
-    setTimeout(() => board.classList.remove('shake'), 400);
-    
+      board.classList.remove('shake');
+
+      if (level < 3) {
+        repositionCells();        // штраф
+        // showHelp(targetCell);     // показать правильную
+      }
+
+      // if (level === 3) {
+      //   showHelp(targetCell);
+      // }
+
+    }, 400);
 
     scoreDisplay.textContent = score;
   }
 
-  function help(cell) {
+//!!!
+  function showHelp(cell, duration = 2000) {
+    if (!cell) return;
     cell.classList.remove('help');
-    void cell.offsetwidth;
+    void cell.offsetWidth;
     cell.classList.add('help');
     setTimeout(() => {
       cell.classList.remove('help');
-    }, 2600);
+    }, duration);
+  }
+
+  function startHelpTimer() {
+    stopHelpTimer();
+    helpTimer = setTimeout(() => {
+      showHelp(targetCell, 2500);
+      startHelpTimer(); 
+    }, HELP_DELAY);
+  }
+
+  function stopHelpTimer() {
+    if (helpTimer) {
+      clearTimeout(helpTimer);
+      helpTimer = null;
+    }
   }
 
   startTimer();

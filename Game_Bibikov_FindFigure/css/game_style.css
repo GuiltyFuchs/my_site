@@ -250,14 +250,14 @@ body {
 }
 
 /* зона сброса всегда поверх фигур */
-.drop-zone {
-  z-index: 3;
-}
+/* .drop-zone {
+  z-index: 1;
+} */
 
 /* фигуры под зоной */
-.game-cell {
-  z-index: 1;
-}
+/* .game-cell {
+  z-index: 3;
+} */
 
 /* фейерверк */
 .firework {

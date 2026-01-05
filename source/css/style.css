@@ -237,12 +237,13 @@ body{
 
 /* маштабирование */
 @media (max-width: 1024px){
-
+  :root{ --logo-size:40px };
   .text-with-images{ grid-template-columns: 1fr 260px }
   .nav-toggle{ display:none }
 
 }
 @media (max-width: 800px){
+  :root{ --logo-size:35px };
   .nav-toggle{ display:inline-block }
   .nav-list{ 
     position:absolute; 
@@ -263,6 +264,6 @@ body{
   }
 }
 @media (max-width:480px){
-  :root{ --logo-size:40px }
+  :root{ --logo-size:30px }
   .images-grid{ grid-template-columns: 1fr }
 }
