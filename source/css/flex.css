@@ -90,7 +90,7 @@
   animation:slap 0.7s infinite;
 }
 
-/* фиксированное состояние */
+/* конечное состояние */
 #toggle:checked + .flex-box {
     animation: shake 0.5s infinite;
 }
