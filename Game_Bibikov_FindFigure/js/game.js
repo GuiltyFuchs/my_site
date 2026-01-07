@@ -211,32 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (level === 3) {
         const isVertical = Math.random() < 0.6; // количество фигур по вертикали
         const duration = 2500 + Math.random() * 1500;
-
-      //   const startX = parseFloat(cell.style.left);
-      //   const startY = parseFloat(cell.style.top);
-
-      //   if (isVertical) {
-      //     cell.animate([
-      //       { top: startY + 'px' },
-      //       { top: Math.max(0, Math.min(bh, startY + (Math.random() * 200 + 100))) + 'px' }
-      //     ], {
-      //     duration,
-      //     iterations: Infinity,
-      //     direction: 'alternate',
-      //     easing: 'ease-in-out'
-      //   });
-      // } else {
-      //     cell.animate([
-      //       { left: startX + 'px' },
-      //       { left: Math.max(0, Math.min(bw, startX + (Math.random() * 200 + 100))) + 'px' }
-      //     ], {
-      //     duration,
-      //     iterations: Infinity,
-      //     direction: 'alternate',
-      //     easing: 'ease-in-out'
-      //     });
-      //   }
-
+      
         if (isVertical) {
           cell.animate([
             { top: '0px' },
