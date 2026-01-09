@@ -11,14 +11,16 @@
     <h2>Результаты игры</h2>
     <p>Игрок: <span id="player-name"></span></p>
     <p>Очки: <span id="score"></span></p>
+
+      <h3>Таблица рекордов</h3>
+      <ol id="rating-list"></ol>
+
   </div>
   <div class="button">
     <button onclick="window.location.href='index.html'">Начать заново</button>
   </div>
+  <!-- <button onclick="localStorage.removeItem('gameResults')">Очистить рейтинг</button> -->
 
-  <script>
-    document.getElementById('player-name').textContent = localStorage.getItem('playerName');
-    document.getElementById('score').textContent = localStorage.getItem('score') || 0;
-  </script>
+  <script src="js/results.js"></script>
 </body>
 </html>

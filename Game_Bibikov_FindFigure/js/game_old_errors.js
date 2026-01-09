@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(timer);
         stopReposition();
         saveResult();
+        // localStorage.setItem('score', score);
         alert('Время вышло! Ваш результат: ' + score);
         location.href = 'results.html';
       }
@@ -113,6 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     board.innerHTML = '';
 
+    // stopReposition();
+    // if(level===1) tmpRep = 5;
+    // if(level===2) tmpRep = 7;
+    // // if(level===3) tmpRep = 18;
+    // startReposition(tmpRep);
+    // stopReposition();
     if (level === 1) {tmpRep = 5; startReposition(tmpRep);}
     if (level === 2) {tmpRep = 7; startReposition(tmpRep);}
 
@@ -134,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const forbiddenBottom = (level === 2) ? 120 : 0;  
     const bw = board.clientWidth - 80;
+    // const bh = board.clientHeight - 80;
     const bh = board.clientHeight - 80 - forbiddenBottom;
     const cells = [];
 
@@ -179,10 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
               time += 2;
               nextLevelBtn.style.display = 'block'; // показ кнопки
               correctAnswer(cell);//!!!
+              // onCorrectAnswer();
               generateBoard();
             } else {
               score -= 2;
               wrongAnswer(cell); //!!!
+              // showHelp(targetCell);
             }
             scoreDisplay.textContent = score;
           }
@@ -200,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // уровень 3 — падение
       if (level === 3) {
-        const isVertical = Math.random() < 0.6;
+        const isVertical = Math.random() < 0.6; // количество фигур по вертикали
         const duration = 2500 + Math.random() * 1500;
       
         if (isVertical) {
@@ -251,11 +261,13 @@ document.addEventListener('DOMContentLoaded', () => {
           time += 2;
           nextLevelBtn.style.display = 'block';
           correctAnswer(cell);
+          // onCorrectAnswer();
           generateBoard();
         } 
         else {
          score -= 3;
          wrongAnswer(cell);
+        //  showHelp(targetCell);
         }
         scoreDisplay.textContent = score;
       });
@@ -263,6 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     stopHelpTimer();
     startHelpTimer();
+
   }
 
   // нажатие пробела - уровень 3
@@ -284,10 +297,12 @@ document.addEventListener('DOMContentLoaded', () => {
           time += 2;
           nextLevelBtn.style.display = 'block'; // показ кнопки
           correctAnswer(cell);
+          // onCorrectAnswer();
           generateBoard();
         } else {
           score -= 4;
           wrongAnswer(cell);
+          // showHelp(targetCell);
         }
         scoreDisplay.textContent = score;
       }
@@ -302,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     count = count + 3;
     nextLevelBtn.style.display = 'none'; // сокрытие при входе на уровень
     if (level > 3) {
-      saveResult();
+      localStorage.setItem('score', score);
       location.href = 'results.html';
     }
     else {
@@ -311,6 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   endGameBtn.addEventListener('click', () => {
+    // localStorage.setItem('score', score);
     saveResult();
     location.href='results.html';
   })  
@@ -318,6 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function repositionCells() {
     const forbiddenBottom = (level === 2) ? 120 : 0;  
     const bw = board.clientWidth - 80;
+    // const bh = board.clientHeight - 80;
     const bh = board.clientHeight - 80 - forbiddenBottom;
 
     document.querySelectorAll('.game-cell').forEach(cell => {
@@ -378,14 +395,20 @@ document.addEventListener('DOMContentLoaded', () => {
       board.classList.remove('shake');
 
       if (level < 3) {
-        repositionCells();
+        repositionCells();        // штраф
+        // showHelp(targetCell);     // показать правильную
       }
+
+      // if (level === 3) {
+      //   showHelp(targetCell);
+      // }
+
     }, 400);
 
     scoreDisplay.textContent = score;
   }
 
-// подсказка
+//!!!
   function showHelp(cell, duration = 2000) {
     if (!cell) return;
     cell.classList.remove('help');
@@ -426,9 +449,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // сортировка по убыванию очков
     results.sort((a, b) => b.score - a.score);
 
-    // топ-5
+    // ограничим топ-10
     localStorage.setItem('gameResults', JSON.stringify(results.slice(0, 5)));
-    localStorage.setItem('lastScore', score);
 }
 
 
