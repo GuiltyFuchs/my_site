@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let skip = 0;
   let tmpRep = 0;
   let helpTimer = null; //!!!
-  let HELP_DELAY = 10000; // 10 секунд !!!
+  let help_delay = 10000; // 10 секунд !!!
   let targetCell = null;
 
 
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
       zone.style.boxShadow = 'green';
       zone.style.outline = '5px solid lime';
       board.appendChild(zone);
-      zone.addEventListener('dragover', e => e.preventDefault());      //
+      zone.addEventListener('dragover', e => e.preventDefault()); 
       zone.addEventListener('drop', e => {
         const index = e.dataTransfer.getData('cellIndex');
         const cell = cells[index];
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
           cell.dataset.color === targetColor) {
           score += 5;
           time += 2;
-          nextLevelBtn.style.display = 'block';
+          nextLevelBtn.style.display = 'block'; // показ кнопки
           correctAnswer(cell);
           generateBoard();
         } 
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
     helpTimer = setTimeout(() => {
       showHelp(targetCell, 2500);
       startHelpTimer(); 
-    }, HELP_DELAY);
+    }, help_delay);
   }
 
   function stopHelpTimer() {
@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // топ-5
     localStorage.setItem('gameResults', JSON.stringify(results.slice(0, 5)));
     localStorage.setItem('lastScore', score);
-}
+  }
 
 
   startTimer();
